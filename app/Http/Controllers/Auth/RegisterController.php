@@ -67,7 +67,6 @@ class RegisterController extends Controller
                 'string',
                 'min:8',
                 'confirmed',
-                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/'
             ],
             'whatsapp_number' => ['required', 'string', 'max:16', 'regex:/^[0-9]+$/'],
             'contact_number' => ['required', 'string', 'max:16', 'regex:/^[0-9]+$/']
@@ -81,12 +80,9 @@ class RegisterController extends Controller
             'password.required' => 'حقل كلمة المرور مطلوب',
             'password.min' => 'يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل',
             'password.confirmed' => 'تأكيد كلمة المرور غير متطابق',
-            'password.regex' => 'يجب أن تحتوي كلمة المرور على حرف كبير، حرف صغير، رقم، وحرف خاص',
             'whatsapp_number.required' => 'حقل رقم الواتساب مطلوب',
-            'whatsapp_number.regex' => 'يجب أن يحتوي رقم الواتساب على أرقام فقط',
             'whatsapp_number.max' => 'يجب ألا يتجاوز رقم الواتساب 16 رقما',
             'contact_number.required' => 'حقل رقم الاتصال مطلوب',
-            'contact_number.regex' => 'يجب أن يحتوي رقم الاتصال على أرقام فقط',
             'contact_number.max' => 'يجب ألا يتجاوز رقم الاتصال 16 رقما',
         ]);
     }
