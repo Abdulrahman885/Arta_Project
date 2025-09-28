@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\api\Auth;
+namespace App\Http\Controllers\API\Auth;
 
 use App\Mail\OtpMail;
 use App\Models\User;
