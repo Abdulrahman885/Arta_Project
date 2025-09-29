@@ -6,7 +6,7 @@
 @yield('contact')
 <hr>
 @extends('layouts.footer')
-@livewireScripts
 <script src="{{asset('assets/Js/custom-Js.js')}}"></script>
+@livewireScripts
 </body>
 </html>

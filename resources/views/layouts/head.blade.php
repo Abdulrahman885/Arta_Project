@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="{{asset('assets/css/custom-style.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/fonts.css')}}">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description"
         content="منصة عرطه - سوق إلكتروني متكامل لبيع وشراء كل ما تحتاجه: سيارات، أثاث، ملابس، إلكترونيات، عقارات، وأشياء أخرى كثيرة. ابحث، اعرض، وتواصل بسهولة.">
     <meta name="keywords"
@@ -36,4 +35,6 @@
     <meta name="msapplication-TileImage" content="{{ asset('favicons/favicon-96x96.png') }}">
     <meta name="msapplication-TileColor" content="#ffffff">
     @livewireStyles
+    @livewireScripts
+
 </head>
