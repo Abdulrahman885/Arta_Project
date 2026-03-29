@@ -5,9 +5,9 @@
                 <h6 style="font-size: large">رفع الصورة</h6>
                 <div class="border border-dark rounded-3" style="width: 100px; height: 80px; position: relative;background-color: #C3C3C3;">
                     <!-- الصورة الأساسية إذا كانت موجودة -->
-                    @if(isset($mainImage))
+                    @if(isset($primary_image))
                         <img id="mainImagePreview" class="" style="width: 100px; height: 80px; cursor: pointer;"
-                             src="{{ $mainImage->temporaryUrl() }}" alt="صورة أساسية"
+                             src="{{ $primary_image->temporaryUrl() }}" alt="صورة أساسية"
                              onclick="document.getElementById('fileInput').click();">
                     @else
                         <img id="mainImagePreview" class="" style="width: 50px; height: 50px; cursor: pointer;margin: 10% 22%;"
@@ -15,10 +15,11 @@
                              onclick="document.getElementById('fileInput').click();">
                     @endif
 
-                    <!-- حقل رفع الملف المخفي -->
-                    <input id="fileInput" wire:model="mainImage" type="file" accept="image/*" style="display: none;"
-                           onchange="previewImage(event)">
 
+
+                    <!-- حقل رفع الملف المخفي -->
+                    <input id="fileInput" wire:model="primary_image" type="file" accept="image/*" style="display: none;"
+                           onchange="previewImage(event)">
                 </div>
             </div>
             <div class="d-flex flex-wrap justify-content-evenly mt-3">
@@ -45,6 +46,9 @@
             </div>
         </div>
     </div>
+    <input wire:model="primary_image" type="file"  >
+    <input wire:model="images[]" type="file" multiple >
+
 </div>
 
 <script>

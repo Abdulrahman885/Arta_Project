@@ -21,8 +21,10 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->foreignId('region_id')->constrained('regions')->onDelete('cascade');
             $table->enum('status', ['جديد', 'شبه جديد', 'مستعمل']);
+
             $table->string('primary_image');
             $table->timestamps();
+            $table->index(['region_id']);
         });
     }
 

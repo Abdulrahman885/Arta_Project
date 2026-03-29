@@ -36,7 +36,7 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-        $this->middleware('auth')->only('logout');
+//        $this->middleware('auth')->only('logout');
     }
 
     /**
@@ -49,6 +49,8 @@ class LoginController extends Controller
         return view('auth-form');
     }
 
+
+
     /**
      * Get the login username to be used by the controller.
      *
@@ -56,7 +58,7 @@ class LoginController extends Controller
      */
     public function username()
     {
-        $login = request()->input('login'); 
+        $login = request()->input('login');
         $field = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
         request()->merge([$field => $login]);
         return $field;
@@ -87,9 +89,21 @@ class LoginController extends Controller
     protected function validateLogin(Request $request)
     {
         $request->validate([
-            'login' => 'required|string',
+            'login' => 'required|string|exists:users,email',
             'password' => 'required|string',
+        ], [
+            'login.required' => 'حقل اسم المستخدم مطلوب.',
+            'login.string' => 'يجب أن يكون اسم المستخدم نصًا.',
+            'login.exists' => ' الايميل غير مسجل في النظام.',
+            'password.required' => 'حقل كلمة المرور مطلوب.',
+            'password.string' => 'يجب أن تكون كلمة المرور نصًا.',
         ]);
-    }
 
+
+    }
+    protected function authenticated(Request $request, $user)
+    {
+        return redirect()->intended($this->redirectPath())
+            ->with('success', 'تم تسجيل دخولك بنجاح!');
+    }
 }

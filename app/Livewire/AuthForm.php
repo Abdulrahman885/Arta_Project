@@ -16,9 +16,10 @@ class AuthForm extends Component
     {
         $this->showLogin = request()->is('login');
     }
-    
+
     public function togglePassword($field)
     {
+
         if ($field === 'password') {
             $this->type = $this->type === "password" ? "text" : "password";
             $this->icon = $this->type === "text" ? "eye-off" : "eye";
@@ -31,6 +32,7 @@ class AuthForm extends Component
     public function toggleForm($isLogin)
     {
         $this->reset(['type','icon','typeConfirmePassword','iconConfirmePassword']);
+
         $this->showLogin = $isLogin;
     }
 

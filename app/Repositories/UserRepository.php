@@ -31,13 +31,16 @@ class UserRepository implements RepositoriesInterface
     public function store(array $data) : User
     {
         $data['username'] = $this->generateUniqueUsername($data['email']);
-        return User::create($data)->addRole('user');;
+        if (!isset($data['image'])) {
+            $data['image'] = 'storage/user_images/user.jpg';
+        }
+        return  User::query()->create($data)->addRole('user');
     }
 
     public function update(array $data,$id) : User
     {
         $User = $this->getById($id);
-        
+
         if(!empty($data['image'])){
             if (\File::exists($User->image)) {
                 \File::delete($User->image);
@@ -50,7 +53,7 @@ class UserRepository implements RepositoriesInterface
         }
         $User->update($data);
         return $User;
-               
+
     }
 
     public function delete($id) : bool
@@ -63,7 +66,14 @@ class UserRepository implements RepositoriesInterface
     {
         return User::where('email', $email)->first();
     }
-
+    public function findByUsername($username)
+    {
+        return User::where('username', $username)->first();
+    }
+    public function findByUsernameOrEmail($login)
+    {
+        return User::with(['role:id,name'])->where('email', $login)->orWhere('username', $login)->first();
+    }
     public function generateUniqueUsername($email)
     {
         $baseUsername = explode('@', $email)[0];
